@@ -8,7 +8,6 @@ export type RegenFunc = (s: State, attackDmg?: number) => number;
 export type SpecialFunc = (s: State) => void;
 
 export interface Skill {
-
     name: string,
 
     procChance: number,
@@ -28,7 +27,6 @@ export interface Skill {
     isCopy?: boolean,
 
     procCount?: number,
-
 } 
 
 export const Attack: Skill = {
@@ -38,7 +36,9 @@ export const Attack: Skill = {
 }
 
 export function calcCanProc(state: State, skill: Skill) {
-    if (skill.procChance < state.minSkillProc && skill.procChance > state.maxSkillProc) return false;
+    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc) {
+        return false;
+    }
     if (skill.procCount >= 5 || (skill.onlyTriggersOnce && skill.procCount >= 1)) return false;
     if (skill.canProc) return skill.canProc(state);
     if (skill.isCopy && !state.lastSkill) return false; 
@@ -78,6 +78,14 @@ export function canProcRoundMin(r: number): CanProcFunc {
 
 export function canProcRoundMax(r: number): CanProcFunc {
     return s => s.round <= r;
+}
+
+export function canProcWhenPowerIsBelow(fraction: number): CanProcFunc {
+    return s => s.attacker.currentPower / s.attacker.power < fraction;
+}
+
+export function canProcWhenPowerIsAbove(fraction: number): CanProcFunc {
+    return s => s.attacker.currentPower / s.attacker.power > fraction;
 }
 
 /**

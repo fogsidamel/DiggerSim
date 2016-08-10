@@ -17,7 +17,7 @@ function baseDamage(state) {
 }
 exports.baseDamage = baseDamage;
 function defenseMult(p) {
-    return 1 - p.defense / (100 + p.defense);
+    return Math.min(1 - p.defense / (100 + p.defense), 1.0);
 }
 exports.defenseMult = defenseMult;
 function trueMult(state) {

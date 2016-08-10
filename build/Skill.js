@@ -6,8 +6,9 @@ exports.Attack = {
     procCount: 0
 };
 function calcCanProc(state, skill) {
-    if (skill.procChance < state.minSkillProc && skill.procChance > state.maxSkillProc)
+    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc) {
         return false;
+    }
     if (skill.procCount >= 5 || (skill.onlyTriggersOnce && skill.procCount >= 1))
         return false;
     if (skill.canProc)
@@ -55,6 +56,14 @@ function canProcRoundMax(r) {
     return s => s.round <= r;
 }
 exports.canProcRoundMax = canProcRoundMax;
+function canProcWhenPowerIsBelow(fraction) {
+    return s => s.attacker.currentPower / s.attacker.power < fraction;
+}
+exports.canProcWhenPowerIsBelow = canProcWhenPowerIsBelow;
+function canProcWhenPowerIsAbove(fraction) {
+    return s => s.attacker.currentPower / s.attacker.power > fraction;
+}
+exports.canProcWhenPowerIsAbove = canProcWhenPowerIsAbove;
 /**
  * Regen skills
  */

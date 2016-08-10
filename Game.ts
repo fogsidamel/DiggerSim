@@ -53,7 +53,7 @@ function buildSkillArray(state: State) {
         if (Skills.calcCanProc(state, s)) {
             skills.push(s);
             totalProc += s.procChance;
-        }
+        } 
 
         if (totalProc >= 1) break;
     }
@@ -68,8 +68,6 @@ function buildSkillArray(state: State) {
 
         if (totalProc >= 1) break;
     }
-
-    //console.log(skills.map(s => s.name));
 
     return skills;
 }
@@ -121,16 +119,20 @@ function step(state: State, silent: boolean) {
 
     
     if (!silent) { 
-        console.log(`${state.round + 1} ${state.attacker.name} ${hit ? 'hit' : 'miss'}: ${skill.name}${dmg > 0 ? ' for ' + dmg.toFixed(0).toString() : ''}${regen > 0 ? ' regen ' + regen.toFixed(0).toString() : ''} (${state.attacker.name} ${state.attacker.currentPower.toFixed(0)}, ${state.target.name} ${state.target.currentPower.toFixed(0)})`);
+        console.log(`${state.round + 1} ${state.attacker.name} ${hit ? 'hit' : 'miss'}: ${skill.name}${dmg > 0 ? ' for ' + dmg.toFixed(0).toString() : ''}${regen > 0 ? ' +' + regen.toFixed(0).toString() : ''} (${state.attacker.name} ${state.attacker.currentPower.toFixed(0)}, ${state.target.name} ${state.target.currentPower.toFixed(0)})`);
     }
+
+    return skill;
 }
 
+let streakCount = 0;
 export function simulate(state: State, silent?: boolean): Players.Player {
 
     resetState(state);
 
-    while (true) {
-        step(state, silent);
+   while (true) {
+        let skill = step(state, silent);
+
         if (state.target.currentPower <= 0) {
             if (!silent) console.log(`${state.attacker.name} wins!`);
             return state.attacker;

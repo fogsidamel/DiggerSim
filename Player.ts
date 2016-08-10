@@ -25,7 +25,6 @@ export function bonusRegen(p: Player) {
     return Math.max(0, p.dodge * 0.005);
 }
 
-// guessing here, mighjt not be the correct formula
 export function dodgeChange(p: Player) { 
     return Math.max(0, p.dodge / (100 + p.dodge));
 }
@@ -36,7 +35,7 @@ export function baseDamage(state: State) {
 }
 
 export function defenseMult(p: Player) {
-    return 1 - p.defense / (100 + p.defense);
+    return Math.min(1 - p.defense / (100 + p.defense), 1.0);
 }
 
 function trueMult(state: State) {
