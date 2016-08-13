@@ -10,12 +10,12 @@ const p1 = {
     true: 87,
     skills: [
         { name: 'Knife Hunt', undodgeable: true, ignoreDefense: true, procChance: 0.03, dmgFactor: 1.15, specialEffect: Skills.specialOpponentOnlyDealsOneDamage() },
-        { name: 'Sunset Claws', isCrit: true, procChance: 0.5, dmgFactor: 3.0, onlyTriggersOnce: true, canProc: Skills.canProcRoundMin(12) },
+        //{ name: 'Sunset Claws', isCrit: true, procChance: 0.5, dmgFactor: 3.0, onlyTriggersOnce: true, canProc: Skills.canProcRoundMin(12) },
         { name: 'Titan Strength', procChance: 0.02, onlyTriggersOnce: true, regenBase: Skills.regenOverall(0.42) },
         { name: 'Deathless Witch', procChance: 0.03, regenBase: Skills.regenOverall(0.35) },
         { name: 'Devils and Witches', procChance: 0.05, regenBase: Skills.regenOverall(0.4), isTeam: true },
         { name: 'Live-giving Rains', procChance: 0.05, regenBase: Skills.regenOverall(0.25) },
-        { name: 'Glittering Protection', procChance: 0.1, regenBase: Skills.regenOverall(0.17) },
+        //{ name: 'Glittering Protection', procChance: 0.1, regenBase: Skills.regenOverall(0.17) },
         //{ name: 'Plundering Storm', procChance: 0.08, regenBase: Skills.regenOverall(0.3) },
         { name: 'Time Retracing', procChance: 0.08, regenBase: Skills.regenEnemyOverall(0.15) },
         { name: 'Time Retracing', procChance: 0.08, regenBase: Skills.regenEnemyOverall(0.15) },
@@ -34,10 +34,10 @@ const p1 = {
 const p2 = {
     name: 'Grim',
     power: 6650000,
-    speed: 193,
+    speed: 200,
     defense: 74,
     dodge: 51,
-    true: 112,
+    true: 110,
     skills: [
         { name: 'Gail Run', isCrit: true, procChance: 0.02, dmgFactor: 4.44, onlyTriggersOnce: true },
         { name: 'Knife Hunt', undodgeable: true, ignoreDefense: true, procChance: 0.03, dmgFactor: 1.15, specialEffect: Skills.specialOpponentOnlyDealsOneDamage() },

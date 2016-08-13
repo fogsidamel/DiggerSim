@@ -95,7 +95,7 @@ function step(state: State, silent: boolean) {
     skill.procCount++;
 
     let actualSkill = skill;
-    if (skill.isCopy) {
+    if (skill.isCopy && state.lastSkill) {
         actualSkill = state.lastSkill;
     }
 

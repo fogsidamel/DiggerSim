@@ -72,7 +72,7 @@ function step(state, silent) {
     let skill = pickSkill(skills);
     skill.procCount++;
     let actualSkill = skill;
-    if (skill.isCopy) {
+    if (skill.isCopy && state.lastSkill) {
         actualSkill = state.lastSkill;
     }
     let hit = true;
