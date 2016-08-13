@@ -6,9 +6,8 @@ exports.Attack = {
     procCount: 0
 };
 function calcCanProc(state, skill) {
-    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc) {
+    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc)
         return false;
-    }
     if (skill.procCount >= 5 || (skill.onlyTriggersOnce && skill.procCount >= 1))
         return false;
     if (skill.canProc)

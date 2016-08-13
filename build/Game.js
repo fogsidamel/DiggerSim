@@ -16,11 +16,15 @@ function create(a, b) {
 exports.create = create;
 function resetState(state) {
     state.round = 0;
+    state.lastSkill = void 0;
     state.hitLastRound = false;
     state.minSkillProc = 0;
     state.maxSkillProc = 1;
     state.onlyDoOneDamage = false;
-    state.attacker.currentPower = state.attacker.power;
+    let a = state.attacker, b = state.target;
+    state.attacker = a.speed >= b.speed ? a : b,
+        state.target = a.speed >= b.speed ? b : a,
+        state.attacker.currentPower = state.attacker.power;
     state.target.currentPower = state.target.power;
     for (let s of state.attacker.skills)
         s.procCount = 0;
@@ -97,7 +101,6 @@ function step(state, silent) {
     }
     return skill;
 }
-let streakCount = 0;
 function simulate(state, silent) {
     resetState(state);
     while (true) {

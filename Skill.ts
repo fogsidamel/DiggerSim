@@ -36,9 +36,7 @@ export const Attack: Skill = {
 }
 
 export function calcCanProc(state: State, skill: Skill) {
-    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc) {
-        return false;
-    }
+    if (skill.procChance < state.minSkillProc || skill.procChance > state.maxSkillProc) return false;
     if (skill.procCount >= 5 || (skill.onlyTriggersOnce && skill.procCount >= 1)) return false;
     if (skill.canProc) return skill.canProc(state);
     if (skill.isCopy && !state.lastSkill) return false; 

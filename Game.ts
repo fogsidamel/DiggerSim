@@ -31,11 +31,15 @@ export function create(a: Players.Player, b: Players.Player) {
 
 function resetState(state: State) {
     state.round = 0;
+    state.lastSkill = void 0;
     state.hitLastRound = false;
     state.minSkillProc = 0;
     state.maxSkillProc = 1;
     state.onlyDoOneDamage = false;
 
+    let a = state.attacker, b = state.target;
+    state.attacker = a.speed >= b.speed ? a : b,
+    state.target = a.speed >= b.speed ? b : a,
     state.attacker.currentPower = state.attacker.power;
     state.target.currentPower = state.target.power;
 
@@ -125,10 +129,8 @@ function step(state: State, silent: boolean) {
     return skill;
 }
 
-let streakCount = 0;
 export function simulate(state: State, silent?: boolean): Players.Player {
-
-    resetState(state);
+   resetState(state);
 
    while (true) {
         let skill = step(state, silent);
