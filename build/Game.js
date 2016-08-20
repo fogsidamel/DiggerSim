@@ -44,6 +44,8 @@ function buildSkillArray(state) {
         if (totalProc >= 1)
             break;
     }
+    if (totalProc >= 1)
+        return skills;
     for (let s of state.attacker.skills) {
         if (s.isTeam)
             continue;
@@ -72,7 +74,7 @@ function step(state, silent) {
     let skill = pickSkill(skills);
     skill.procCount++;
     let actualSkill = skill;
-    if (skill.isCopy && state.lastSkill) {
+    if (skill.isCopy) {
         actualSkill = state.lastSkill;
     }
     let hit = true;
